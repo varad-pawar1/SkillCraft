@@ -1,11 +1,13 @@
 import express from "express";
 import "dotenv/config";
 import { connect } from "mongoose";
-import { userRouter } from "./routes/userRoutes.js";
+import { adminRouter } from "./routes/adminRoutes.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js"
 import morgan from "morgan";
 import compression from "compression";
 import cors from "cors";
+import { instructorRouter } from "./routes/instructorRoutes.js";
+import { studentRouter } from "./routes/studentRoutes.js";
 
 const app = express();
 // app.use(
@@ -21,13 +23,12 @@ app.use(compression());
 
 
 app.use(express.json());
-app.use("/users", userRouter);
+app.use("/admin", adminRouter);
+app.use("/instructors", instructorRouter);
+app.use("/student", studentRouter)
 
 
 
-app.get("/v", (req, res) => {
-  res.send("authMiddleware varad")
-})
 
 app.use(authMiddleware)
 
