@@ -8,14 +8,14 @@ const App = () => {
 
   return (
     <>
-      {/* <div className="container">
+      <div className="container">
         <Sidebar />
         <div className="content">
           <Navbar />
           <Routine />
         </div>
-      </div> */}
-      <AuthenticationPage />
+      </div>
+      {/* <AuthenticationPage /> */}
     </>
   )
 }

@@ -1,9 +1,13 @@
 import React, { useState, createContext } from "react";
 import axios from "axios";
+// import { useNavigate } from 'react-router-dom';
+// import Routine from "./Routine";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+    // const navigate = useNavigate();
+
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [signupFormData, setSignupFormData] = useState({
         username: "",
@@ -57,11 +61,16 @@ export const DataProvider = ({ children }) => {
         e.preventDefault();
         try {
             const response = await axios.post("http://localhost:2024/student/login", loginFormData);
-            console.log(response.data);
-            setLoginFormData({
-                email: "",
-                password: "",
-            });
+            const token = response.data.token;
+            if (token) {
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                localStorage.setItem("authToken", token);
+                setLoginFormData({
+                    email: "",
+                    password: "",
+                });
+                // navigate("/Routine");
+            }
         } catch (error) {
             console.log(error)
         }
