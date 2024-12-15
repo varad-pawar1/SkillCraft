@@ -1,12 +1,11 @@
 import React, { useState, createContext } from "react";
 import axios from "axios";
-// import { useNavigate } from 'react-router-dom';
-// import Routine from "./Routine";
+import { useNavigate } from 'react-router-dom';
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [signupFormData, setSignupFormData] = useState({
@@ -69,7 +68,7 @@ export const DataProvider = ({ children }) => {
                     email: "",
                     password: "",
                 });
-                // navigate("/Routine");
+                navigate("/");
             }
         } catch (error) {
             console.log(error)

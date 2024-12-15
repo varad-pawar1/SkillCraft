@@ -1,23 +1,15 @@
-import "./App.css"
-import Sidebar from './components/Sidebar'
-import Navbar from './components/Navbar'
-import Routine from './components/Routine'
-import AuthenticationPage from './components/AuthenticationPage'
+import "./App.css";
+import Dashboard from "./components/Dashboard";
+import AuthenticationPage from "./components/AuthenticationPage";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
-
   return (
-    <>
-      <div className="container">
-        <Sidebar />
-        <div className="content">
-          <Navbar />
-          <Routine />
-        </div>
-      </div>
-      {/* <AuthenticationPage /> */}
-    </>
-  )
-}
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/login" element={<AuthenticationPage />} />
+    </Routes>
+  );
+};
 
-export default App
+export default App;
