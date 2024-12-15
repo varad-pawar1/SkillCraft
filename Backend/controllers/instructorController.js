@@ -4,6 +4,7 @@ import { instructorData } from "../models/adminModel.js";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import "dotenv/config";
+import { creationData } from "../models/instructorModel.js";
 
 const signUp = async (req, res) => {
     try {
@@ -72,8 +73,6 @@ const login = async (req, res) => {
     }
 };
 
-
-
 const forgetpassword = async (req, res) => {
     try {
         const { email } = req.body;
@@ -108,7 +107,6 @@ const forgetpassword = async (req, res) => {
     }
 };
 
-
 const resetpassword = async (req, res) => {
     try {
         const { token, newPassword } = req.body;
@@ -129,4 +127,44 @@ const resetpassword = async (req, res) => {
     }
 };
 
-export { signUp, login, forgetpassword, resetpassword };
+
+const createLecture = async (req, res) => {
+    try {
+        const { L_Name, L_Date, L_link, Subject, L_Type, L_Instructor } = req.body;
+        console.log(L_Name, L_Date, L_link, Subject, L_Type, L_Instructor);
+
+        // Check and parse L_Date
+        const parsedDate = new Date(L_Date);
+
+        // Validate the parsed date
+        if (isNaN(parsedDate.getTime())) {
+            return res.status(400).json({ message: "Invalid date format. Please provide a valid date (e.g., YYYY-MM-DD)." });
+        }
+
+        const newLecture = new creationData({
+            createdBy: res.locals.adminId,
+            L_Name,
+            L_Date: parsedDate, // Use the parsed date
+            L_link,
+            Subject,
+            L_Type,
+            L_Instructor
+        });
+
+        console.log(newLecture);
+        const savedLecture = await newLecture.save();
+
+        res.status(201).json({ message: "Lecture created successfully.", lecture: savedLecture });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal Server Error." });
+    }
+};
+
+
+
+
+
+
+
+export { signUp, login, forgetpassword, resetpassword, createLecture };

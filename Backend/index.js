@@ -24,6 +24,8 @@ app.use("/admin", adminRouter);
 app.use("/instructors", instructorRouter);
 app.use("/student", studentRouter)
 
+
+
 app.use(authMiddleware)
 
 app.get("/varad", (req, res) => {
