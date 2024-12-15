@@ -1,0 +1,33 @@
+.navbar {
+    border: 1px solid lightgray;
+    height: 10%;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+}
+
+.searchbar {
+    border: 1px solid gray;
+    border-radius: 0.3rem;
+    display: flex;
+    align-items: center;
+    flex: 0.7;
+}
+
+.searchbar input {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+}
+
+.navbar span {
+    font-size: 1.4rem;
+    padding: 0.5rem;
+}
+
+.nav_options > span:hover {
+    cursor: pointer;
+}
