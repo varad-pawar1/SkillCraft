@@ -1,0 +1,11 @@
+.routine {
+    padding: 3rem;
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.routine h2 {
+    margin-bottom: 2rem;
+}
