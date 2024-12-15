@@ -50,8 +50,9 @@ const signUp = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await studentData.findOne({ email });
-
+        console.log(email, password)
+        const user = await studentData.findOne({email});
+        console.log(user)
         if (!user) {
             return res.status(404).json({ msg: "Invalid credentials" });
         }

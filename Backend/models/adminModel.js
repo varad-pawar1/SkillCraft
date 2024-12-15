@@ -53,13 +53,4 @@ const studentSchema = new Schema({
 
 const studentData = model("student", studentSchema);
 
-
-
-
-
-
-
-
-
-
 export { adminData, instructorData, studentData };

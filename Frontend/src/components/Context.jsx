@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import axios from "axios";
 
 export const DataContext = createContext();
 
@@ -52,13 +53,18 @@ export const DataProvider = ({ children }) => {
         }));
     };
 
-    const handleLoginSubmit = (e) => {
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        console.log("Login Data:", loginFormData);
-        setLoginFormData({
-            email: "",
-            password: "",
-        })
+        try {
+            const response = await axios.post("http://localhost:2024/student/login", loginFormData);
+            console.log(response.data);
+            setLoginFormData({
+                email: "",
+                password: "",
+            });
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (

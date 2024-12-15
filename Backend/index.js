@@ -11,38 +11,24 @@ import { studentRouter } from "./routes/studentRoutes.js";
 
 const app = express();
 const PORT = 2024
-// app.use(
-//   cors({
-//     origin: ["http://localhost:5173"],
-//   })
-// );
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+  })
+);
 
 app.use(morgan("common"));
-
 app.use(compression());
-
-
-
 app.use(express.json());
 app.use("/admin", adminRouter);
 app.use("/instructors", instructorRouter);
 app.use("/student", studentRouter)
 
-
-
-
 app.use(authMiddleware)
-
 
 app.get("/varad", (req, res) => {
   res.send("authMiddleware varad")
 })
-
-
-
-
-
-
 
 app.listen(PORT, async () => {
   await connect(process.env.DB_URL);
