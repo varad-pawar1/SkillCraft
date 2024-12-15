@@ -10,6 +10,7 @@ import { instructorRouter } from "./routes/instructorRoutes.js";
 import { studentRouter } from "./routes/studentRoutes.js";
 
 const app = express();
+const PORT = 2024
 // app.use(
 //   cors({
 //     origin: ["http://localhost:5173"],
@@ -38,7 +39,12 @@ app.get("/varad", (req, res) => {
 })
 
 
-app.listen(2022, async () => {
+
+
+
+
+
+app.listen(PORT, async () => {
   await connect(process.env.DB_URL);
-  console.log("Server started on http:localhost:2022");
+  console.log(`Server started on http:localhost:${PORT}`);
 });

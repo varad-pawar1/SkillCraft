@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
-import { instructorData } from "../models/userModel.js";
+import { instructorData } from "../models/adminModel.js";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import "dotenv/config";
